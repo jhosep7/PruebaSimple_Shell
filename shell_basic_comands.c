@@ -1,14 +1,12 @@
 #include "holberton.h"
 
-//int (*builtin_func[]) (char **) = {&hsh_cd, &hsh_help, &hsh_exit};
 /**
  * hsh_num_builtins - change directory.
  * Return: Always returns 1, to continue executing.
  */
-
 int hsh_num_builtins(void)
 {
-	char *builtin_str[] = {"cd", "exit", "help"};
+	char *builtin_str[3] = {"cd", "exit", "help"};
 	return (sizeof(builtin_str) / sizeof(char *));
 }
 
@@ -41,21 +39,38 @@ int hsh_cd(char **args)
  */
 int hsh_help(char **args)
 {
-	int i;
+	int i,j;
+	char *Commands[14] = {
+		"cd [-L|[-P [-e]] [-@]] [dir]",
+		"exit [n]", "help [-dms] [pattern ...]",
+		"echo [-neE] [arg ...]","pwd [-LP]",
+		"exec [-cl] [-a name] [commands [arguments ...]] [redirection ...]",
+		"for (( exp1; exp2; exp3 )); do COMMANDS; done",
+		"function name { COMMANDS ; }", "return [n]",
+		"read [-ers] [-a matriz] [-d delim] [-i texto] [-n ncars] [-N ncars]>",
+		"if COMMANDS; then COMMANDS; [ elif COMMANDS; then COMMANDS; ]...[ else >",
+		"wait [-n] [id ...]","while COMMANDS; do COMMANDS; done"
+		};
 
 	write(STDOUT_FILENO, "\nHolberton students bash, version 1.0-release (x86_64-pc-linux-gnu)\n", 70);
 	write(STDOUT_FILENO, "Use `man_1_simple_shell' to find more information.\n",52);
-	write(STDOUT_FILENO, "Usage: \"help [comand] [comand] [...]\"\n", 41);
+	write(STDOUT_FILENO, "Usage: \" [COMMAND] --help \"\n", 41);
 	write(STDOUT_FILENO, "===================\n\n", 22);
 
 	for (i = 0; args[i] != NULL; i++)
 	{
-		write(STDOUT_FILENO, " ", 1);
-		write(STDOUT_FILENO, args[i], strlen(args[i])); /* Hay que cambiar STRLEN, por ls nuestra */
+//write(STDOUT_FILENO, args[i], strlen(args[i])); /* Me toco agregar un array aqui commands[], reviselo y me avisa :) */
+	}
+	for (i = 0; i < 13; i++)
+	{
+		write(STDOUT_FILENO, "\t", 1);
+		for (j = 0; Commands[i][j]; j++)
+		{
+			write(STDOUT_FILENO, &Commands[i][j], 1);
+		}
 		write(STDOUT_FILENO, "\n", 1);
 	}
 	write(STDOUT_FILENO, "\n", 1);
-
 	write(STDOUT_FILENO, "By: JONATAN MAZO - JOSE DIAZ.\n", 31);
 	write(STDOUT_FILENO, "More in Holberton website https://www.holbertonschool.com/co\n", 62);
 	return (1);
