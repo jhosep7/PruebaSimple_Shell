@@ -42,15 +42,22 @@ int hsh_cd(char **args)
 int hsh_help(char **args)
 {
 	int i;
-	write(STDOUT_FILENO, "\n JONATAN MAZO - JOSE DIAZ.\n", 100);
-	write(STDOUT_FILENO, "Type program names, and hit enter.\n", 100);
-	write(STDOUT_FILENO, "The following are built in:\n", 200);
-        for (i = 0; i < hsh_num_builtins(); i++)
-	{
-		printf("\n  %s\n", args[i]);
-	}
 
-	write(STDOUT_FILENO, "\n Use the man command for information\n", 200);
+	write(STDOUT_FILENO, "\nHolberton students bash, version 1.0-release (x86_64-pc-linux-gnu)\n", 70);
+	write(STDOUT_FILENO, "Use `man_1_simple_shell' to find more information.\n",52);
+	write(STDOUT_FILENO, "Usage: \"help [comand] [comand] [...]\"\n", 41);
+	write(STDOUT_FILENO, "===================\n\n", 22);
+
+	for (i = 0; args[i] != NULL; i++)
+	{
+		write(STDOUT_FILENO, " ", 1);
+		write(STDOUT_FILENO, args[i], strlen(args[i])); /* Hay que cambiar STRLEN, por ls nuestra */
+		write(STDOUT_FILENO, "\n", 1);
+	}
+	write(STDOUT_FILENO, "\n", 1);
+
+	write(STDOUT_FILENO, "By: JONATAN MAZO - JOSE DIAZ.\n", 31);
+	write(STDOUT_FILENO, "More in Holberton website https://www.holbertonschool.com/co\n", 62);
 	return (1);
 }
 
