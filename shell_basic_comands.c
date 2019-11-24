@@ -54,7 +54,7 @@ int hsh_help(char **args)
 
 	write(STDOUT_FILENO, "\nHolberton students bash, version 1.0-release (x86_64-pc-linux-gnu)\n", 70);
 	write(STDOUT_FILENO, "Use `man_1_simple_shell' to find more information.\n",52);
-	write(STDOUT_FILENO, "Usage: \" [COMMAND] --help \"\n", 41);
+	write(STDOUT_FILENO, "Usage: \" help [BUILTIN]\"\n", 41);
 	write(STDOUT_FILENO, "===================\n\n", 22);
 
 	for (i = 0; args[i] != NULL; i++)
