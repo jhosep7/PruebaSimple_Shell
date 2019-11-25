@@ -39,7 +39,8 @@ int hsh_cd(char **args)
  */
 int hsh_help(char **args)
 {
-	int i,j;
+
+	int i,j,k;
 	char *Commands[14] = {
 		"cd [-L|[-P [-e]] [-@]] [dir]",
 		"exit [n]", "help [-dms] [pattern ...]",
@@ -59,20 +60,48 @@ int hsh_help(char **args)
 
 	for (i = 0; args[i] != NULL; i++)
 	{
-//write(STDOUT_FILENO, args[i], strlen(args[i])); /* Me toco agregar un array aqui commands[], reviselo y me avisa :) */
+	write(STDOUT_FILENO, args[i], strlen(args[i]));
 	}
-	for (i = 0; i < 13; i++)
+	i--;
+//	printf("%s",args[i]);
+
+	if (strcmp(args[i], "help") == 0)
+	{
+	for (j = 0; j < 13; j++)
 	{
 		write(STDOUT_FILENO, "\t", 1);
-		for (j = 0; Commands[i][j]; j++)
+		for (k = 0; Commands[j][k]; k++)
 		{
-			write(STDOUT_FILENO, &Commands[i][j], 1);
+			write(STDOUT_FILENO, &Commands[j][k], 1);
 		}
 		write(STDOUT_FILENO, "\n", 1);
 	}
 	write(STDOUT_FILENO, "\n", 1);
 	write(STDOUT_FILENO, "By: JONATAN MAZO - JOSE DIAZ.\n", 31);
 	write(STDOUT_FILENO, "More in Holberton website https://www.holbertonschool.com/co\n", 62);
+	return (1);
+	}
+
+	if (strcmp(args[1], "cd") == 0)
+	{
+			helpCD();
+			return (1);
+	}
+	if (_strcmp(args[1], "exit") == 0)
+	{
+		helpExit();
+		return (1);
+	}
+	if (_strcmp(args[1], "help") == 0)
+	{
+		helpHelp();
+		return (1);
+	}
+	if (_strcmp(args[1], "env") == 0)
+	{
+		helpEnv();
+		return (1);
+	}
 	return (1);
 }
 
@@ -89,5 +118,5 @@ int hsh_exit(char **args)
 		write(STDOUT_FILENO, "Error to exit.\n", 100);
 		return (1);
 	}
-	return (0);
+	return (1);
 }
