@@ -33,10 +33,9 @@ char **split_path(char *env[]);
 int _strcmp(char *s1, char *s2);
 char *path_concat(char **args, char **path);
 
-void helpExit(void);
-void helpCD(void);
-void helpHelp(void);
-void helpEnv(void);
-void helpPWD(void);
-void helpEcho(void);
+int helpExit(void);
+int helpCD(void);
+int helpEnv(void);
+int helpPWD(void);
+int helpEcho(void);
 #endif

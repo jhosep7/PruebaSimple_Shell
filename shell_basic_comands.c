@@ -7,6 +7,7 @@
 int hsh_num_builtins(void)
 {
 	char *builtin_str[3] = {"cd", "exit", "help"};
+
 	return (sizeof(builtin_str) / sizeof(char *));
 }
 
@@ -39,66 +40,41 @@ int hsh_cd(char **args)
  */
 int hsh_help(char **args)
 {
-	int i,j,k;
-	char *Commands[7] = {
-		"cd [-L|[-P [-e]] [-@]] [dir]", "exit [n]", "help [-dms] [pattern ...]",
-		"echo [-neE] [arg ...]","pwd [-LP]", "env [OPTION]... [-] [NAME=VALUE]... [COMMAND [ARG]...]"
+	int i, j, k;
+	char *Commands[7] = {"cd [-L|[-P [-e]] [-@]] [dir]", "exit [n]",
+		"help [-dms]", "echo [arg]", "pwd [-LP]", "env [NAME=VALUE]"
 		};
 
-	write(STDOUT_FILENO, "\nHolberton students bash, version 1.0-release (x86_64-pc-linux-gnu)\n", 70);
-	write(STDOUT_FILENO, "Use `man_1_simple_shell' to find more information.\n",52);
-	write(STDOUT_FILENO, "Usage: \" help [BUILTIN]\"\n", 41);
+	write(STDOUT_FILENO, "\nHolberton students bash,", 26);
+	write(STDOUT_FILENO, " version 1.0-release (x86_64-pc-linux-gnu)\n", 44);
+	write(STDOUT_FILENO, "Usage: \" help [BUILTIN]\"\n", 26);
 	write(STDOUT_FILENO, "===================\n\n", 22);
-
 	for (i = 0; args[i] != NULL; i++)
 	{/*	write(STDOUT_FILENO, args[i], strlen(args[i]));*/	}
 	i--;
-//	printf("%s",args[i]);
 	if (strcmp(args[i], "help") == 0)
 	{
 		for (j = 0; j < 6; j++)
-		{
-			write(STDOUT_FILENO, "\t", 1);
+		{	write(STDOUT_FILENO, "\t", 1);
 			for (k = 0; Commands[j][k]; k++)
 			{write(STDOUT_FILENO, &Commands[j][k], 1); }
 			write(STDOUT_FILENO, "\n", 1);
 		}
 		write(STDOUT_FILENO, "\n", 1);
 		write(STDOUT_FILENO, "By: JONATAN MAZO - JOSE DIAZ.\n", 31);
-		write(STDOUT_FILENO, "More in Holberton website https://www.holbertonschool.com/co\n", 62);
+		write(STDOUT_FILENO, "Website https://www.holbertonschool.com/co\n", 62);
 		return (1);
 	}
-
 	if (strcmp(args[1], "cd") == 0)
-	{
-			helpCD();
-			return (1);
-	}
+	{helpCD(); }
 	if (_strcmp(args[1], "exit") == 0)
-	{
-		helpExit();
-		return (1);
-	}
-	if (_strcmp(args[1], "help") == 0)
-	{
-		helpHelp();
-		return (1);
-	}
+	{helpExit(); }
 	if (_strcmp(args[1], "env") == 0)
-	{
-		helpEnv();
-		return (1);
-	}
+	{helpEnv(); }
 	if (_strcmp(args[1], "pwd") == 0)
-	{
-		helpPWD();
-		return (1);
-	}
+	{helpPWD(); }
 	if (_strcmp(args[1], "echo") == 0)
-	{
-		helpEcho();
-		return (1);
-	}
+	{helpEcho(); }
 	return (1);
 }
 
@@ -107,7 +83,6 @@ int hsh_help(char **args)
  * @args: arguments.
  * Return: Always returns 0, to terminate execution.
  */
-
 int hsh_exit(char **args)
 {
 	if (args == NULL)
