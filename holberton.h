@@ -37,4 +37,6 @@ void helpExit(void);
 void helpCD(void);
 void helpHelp(void);
 void helpEnv(void);
+void helpPWD(void);
+void helpEcho(void);
 #endif
